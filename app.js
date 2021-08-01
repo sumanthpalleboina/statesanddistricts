@@ -46,7 +46,6 @@ const convertDistrictObjectIntoResponseObject = (dbObject) => {
   };
 };
 
-//getAllStates API1
 app.get("/states/", async (request, response) => {
   const getAllStatesQuery = `
   SELECT
@@ -61,7 +60,6 @@ app.get("/states/", async (request, response) => {
   );
 });
 
-//getState API2
 app.get("/states/:stateId/", async (request, response) => {
   const { stateId } = request.params;
   const getStateQuery = `
@@ -75,7 +73,6 @@ app.get("/states/:stateId/", async (request, response) => {
   response.send(convertDbObjectIntoResponseObject(state));
 });
 
-//getDistrict API4
 app.get("/districts/:districtId/", async (request, response) => {
   const { districtId } = request.params;
   const getDistrictQuery = `
@@ -89,7 +86,6 @@ app.get("/districts/:districtId/", async (request, response) => {
   response.send(convertDistrictObjectIntoResponseObject(district));
 });
 
-//postDistrict API3
 app.post("/districts/", async (request, response) => {
   const { districtName, stateId, cases, cured, active, deaths } = request.body;
   console.log(districtName, stateId, cases, cured, active, deaths);
@@ -109,7 +105,6 @@ app.post("/districts/", async (request, response) => {
   response.send("District Successfully Added");
 });
 
-//deleteDistrict API5
 app.delete("/districts/:districtId/", async (request, response) => {
   const { districtId } = request.params;
   const deleteQuery = `
@@ -120,7 +115,6 @@ app.delete("/districts/:districtId/", async (request, response) => {
   response.send("District Removed");
 });
 
-//putDistrict API6
 app.put("/districts/:districtId/", async (request, response) => {
   const { districtId } = request.params;
   const { districtName, stateId, cases, cured, active, deaths } = request.body;
@@ -148,7 +142,6 @@ const convertStatsResponseObject = (dbResponse) => {
   };
 };
 
-//getStats API7
 app.get("/states/:stateId/stats/", async (request, response) => {
   const { stateId } = request.params;
   const getStatsQuery = `
@@ -168,7 +161,7 @@ const convertAndGetDistrictName = (dbResponse) => {
     stateName: dbResponse.state_name,
   };
 };
-//getDistrictName API8
+
 app.get("/districts/:districtId/details/", async (request, response) => {
   const { districtId } = request.params;
   const getDistrictNameQuery = `
